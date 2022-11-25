@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended: true,}))
 
 app.get('/', (req, res) => {
     // res.json({ info: 'Node.js, Express, and Postgres API' })
-    res.json({'GET_USERS': '/users', 'ADD_USERS': '/add'})
+    res.json({'GET_USERS': '/users', 'POST_USERS': '/add'})
 
 });
 

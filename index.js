@@ -61,7 +61,7 @@ app.get('/users/:id', async(req, res) => {
     })
 })
 
-app.put('/users/id', async(req, res) => {
+app.put('/users/:id', async(req, res) => {
     const id = parseInt(req.params.id);
     const { name, email } = req.body;
 

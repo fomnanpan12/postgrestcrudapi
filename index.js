@@ -48,4 +48,19 @@ app.post('/add', async(req, res) => {
     )
 })
 
+app.get('/users/:id', async(req, res) => {
+    const id = req.params.id;
+
+    await pool.query('SELECT * FROM USERS WHERE id=$1', [id], (err, result) => {
+        if (err) {
+            throw err;
+        }
+        res.status(200).json(result.rows)
+    })
+})
+
+app.put('/users/id', async(req, res) => {
+    
+})
+
 app.listen(PORT, console.log('app'))

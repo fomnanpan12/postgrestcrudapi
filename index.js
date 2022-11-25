@@ -8,11 +8,13 @@ dotenv.config()
 var PORT = 5000;
 
 const pool = new Pool({
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
+    // user: process.env.PGUSER,
+    // host: process.env.PGHOST,
+    // database: process.env.PGDATABASE,
+    // password: process.env.PGPASSWORD,
+    // port: process.env.PGPORT
+    url: `${process.env.POSTGRESQL_EXTERNAL_URL}`,
     database: process.env.PGDATABASE,
-    password: process.env.PGPASSWORD,
-    port: process.env.PGPORT
 })
 
 var app = express();

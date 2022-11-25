@@ -47,5 +47,3 @@ app.post('/add', async(req, res) => {
 })
 
 app.listen(5000, console.log('app'))
-
-// https.createServer(app).listen(PORT);

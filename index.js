@@ -71,7 +71,7 @@ app.put('/users/:id', async(req, res) => {
         if (err) {
             throw err
         }
-        res.status(201).send(`your id ${id} has successfully been updated with ${result.rows}`)
+        res.status(201).send(`your id ${id} has successfully been updated`)
     })
 })
 

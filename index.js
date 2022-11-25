@@ -5,7 +5,7 @@ const db = require('./queries');
 const dotenv = require("dotenv");
 dotenv.config()
 
-var PORT = 5000;
+// var PORT = 5000;
 
 const pool = new Pool({
     user: process.env.PGUSER,
@@ -46,4 +46,4 @@ app.post('/add', async(req, res) => {
     )
 })
 
-app.listen(5000, console.log('app'))
+app.listen(PORT, console.log('app'))

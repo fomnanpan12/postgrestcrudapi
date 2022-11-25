@@ -24,7 +24,14 @@ app.use(methodOverride());
 
 app.get('/', (req, res) => {
     // res.json({ info: 'Node.js, Express, and Postgres API' })
-    res.json({'GET_USERS': '/users', 'POST_USERS': '/add', 'GET_USER_BY_ID': '/users/:id', 'PUT/UPDATE_USER': '/users/id', 'DELETE_USER': '/users/:id'})
+    res.json({
+        'INTRO': 'THIS IS A CRUDE API USING NODE.JS, EXPRESS AND POSTGRESQL BY NANPAN WILSON',
+        'GET_USERS': '/users', 
+        'POST_USERS': '/add', 
+        'GET_USER_BY_ID': '/users/:id', 
+        'PUT/UPDATE_USER': '/users/id', 
+        'DELETE_USER': '/users/:id'
+    })
 
 });
 

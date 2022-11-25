@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config()
 
 // var PORT = 5000;
+var PORT = process.env.PORT || 3000;
 
 const pool = new Pool({
     user: process.env.PGUSER,

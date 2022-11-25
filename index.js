@@ -2,15 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Pool = require('pg').Pool
 const db = require('./queries');
+const dotenv = require("dotenv");
+dotenv.config()
 
 var PORT = 5000;
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'api',
-    password: '0000',
-    port:5432,
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD,
+    port: process.env.PGPORT
 })
 
 var app = express();
@@ -44,6 +46,6 @@ app.post('/add', async(req, res) => {
     )
 })
 
-// app.listen(5000, console.log('app'))
+app.listen(5000, console.log('app'))
 
-https.createServer(app).listen(PORT);
+// https.createServer(app).listen(PORT);

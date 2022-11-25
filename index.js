@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const Pool = require('pg').Pool
 const db = require('./queries');
 const dotenv = require("dotenv");
+var methodOverride = require('method-override')
 dotenv.config()
 
 // var PORT = 5000;
@@ -19,6 +20,7 @@ const pool = new Pool({
 var app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true,}))
+app.use(methodOverride());
 
 app.get('/', (req, res) => {
     // res.json({ info: 'Node.js, Express, and Postgres API' })
@@ -60,14 +62,16 @@ app.get('/users/:id', async(req, res) => {
 })
 
 app.put('/users/id', async(req, res) => {
-    const id = parseInt(request.params.id)
-    const { name, email } = request.body
+    const id = parseInt(req.params.id);
+    const { name, email } = req.body;
 
-    await pool.query('UPDATE USERS SET name=$1, email=$2 WHERE id=$3', [name, email, id], (err, result) => {
+    console.log(id, name, email);
+
+     pool.query('UPDATE users SET name=$1, email=$2 WHERE id=$3', [name, email, id], (err, result) => {
         if (err) {
             throw err
         }
-        res.status(201).json({'your id has successfully been updated with': result.rows})
+        res.status(201).send(`your id ${id} has successfully been updated with ${result.rows}`)
     })
 })
 

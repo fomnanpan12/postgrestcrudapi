@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended: true,}))
 
 app.get('/', (req, res) => {
     // res.json({ info: 'Node.js, Express, and Postgres API' })
-    res.json({'GET_USERS': '/users', 'POST_USERS': '/add'})
+    res.json({'GET_USERS': '/users', 'POST_USERS': '/add', 'GET_USER_BY_ID': '/users/:id'})
 
 });
 
@@ -60,7 +60,7 @@ app.get('/users/:id', async(req, res) => {
 })
 
 app.put('/users/id', async(req, res) => {
-    
+
 })
 
 app.listen(PORT, console.log('app'))

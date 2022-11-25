@@ -24,7 +24,7 @@ app.use(methodOverride());
 
 app.get('/', (req, res) => {
     // res.json({ info: 'Node.js, Express, and Postgres API' })
-    res.json({'GET_USERS': '/users', 'POST_USERS': '/add', 'GET_USER_BY_ID': '/users/:id', 'PUT/UPDATE_USER': '/users/id'})
+    res.json({'GET_USERS': '/users', 'POST_USERS': '/add', 'GET_USER_BY_ID': '/users/:id', 'PUT/UPDATE_USER': '/users/id', 'DELETE_USER': '/users/:id'})
 
 });
 
@@ -72,6 +72,17 @@ app.put('/users/:id', async(req, res) => {
             throw err
         }
         res.status(201).send(`your id ${id} has successfully been updated`)
+    })
+})
+
+app.delete('/users/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+
+    pool.query('DELETE FROM USERS WHERE id=$1', [id], (err, result) => {
+        if (err) {
+            throw err
+        }
+        res.status(201).send(`The user with the ID: ${id} has successfully been deleted...`)
     })
 })
 

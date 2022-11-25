@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended: true,}))
 
 app.get('/', (req, res) => {
     // res.json({ info: 'Node.js, Express, and Postgres API' })
-    res.json({'GET_USERS': '/users', 'POST_USERS': '/add', 'GET_USER_BY_ID': '/users/:id'})
+    res.json({'GET_USERS': '/users', 'POST_USERS': '/add', 'GET_USER_BY_ID': '/users/:id', 'PUT/UPDATE_USER': '/users/id'})
 
 });
 
@@ -60,7 +60,15 @@ app.get('/users/:id', async(req, res) => {
 })
 
 app.put('/users/id', async(req, res) => {
+    const id = parseInt(request.params.id)
+    const { name, email } = request.body
 
+    await pool.query('UPDATE USERS SET name=$1, email=$2 WHERE id=$3', [name, email, id], (err, result) => {
+        if (err) {
+            throw err
+        }
+        res.status(201).json({'your id has successfully been updated with': result.rows})
+    })
 })
 
 app.listen(PORT, console.log('app'))
